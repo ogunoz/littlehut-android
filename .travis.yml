@@ -14,8 +14,6 @@ android:
     - android-sdk-preview-license-.+
     - android-sdk-license-.+
     - google-gdk-license-.+
-script:
-  - "./gradlew clean build connectedCheck -PdisablePreDex --stacktrace"
 deploy:
    provider: releases
    file: lilhut-debug.apk
