@@ -27,7 +27,7 @@ class BusAttendanceListViewModel(busAttendanceModel: BusAttendanceModel) {
             busList.add(BusAttendanceHeaderViewModel(subTitle, list.size, type))
         }
         for (attendee in list) {
-            busList.add(BusAttendanceContentViewModel(attendee.name, attendee.email, ""))
+            busList.add(BusAttendanceContentViewModel(attendee.name, attendee.email, attendee.pictureUrl))
         }
     }
 

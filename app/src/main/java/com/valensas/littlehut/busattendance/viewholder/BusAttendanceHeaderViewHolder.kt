@@ -1,11 +1,8 @@
 package com.valensas.littlehut.busattendance.viewholder
 
 import android.support.v4.content.ContextCompat
-import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.valensas.littlehut.BaseViewHolder
 import com.valensas.littlehut.R
 import com.valensas.littlehut.busattendance.item.AttendanceListType
 import com.valensas.littlehut.busattendance.item.BusAttendanceHeaderViewModel

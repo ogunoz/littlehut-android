@@ -3,8 +3,6 @@ package com.valensas.littlehut.network
 import io.reactivex.Observable
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.ResponseBody
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -22,7 +20,7 @@ interface APIService {
     fun getBusAttendance(): Observable<BusAttendanceModel>
 
     @POST("bus/attendance")
-    fun postMyAttendance(@Body body: AttendModel): Observable<ResponseBody>
+    fun postMyAttendance(@Body body: AttendModel): Observable<BaseResponse>
 
     companion object {
 

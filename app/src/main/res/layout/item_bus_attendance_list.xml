@@ -7,12 +7,16 @@
     android:layout_height="72dp"
     android:gravity="center_vertical"
     android:orientation="horizontal"
+    android:clickable="false"
+    android:focusable="false"
     android:paddingEnd="16dp"
     android:paddingStart="16dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/busAttendanceItemImage"
         android:layout_width="40dp"
+        app:civ_border_width="1dp"
+        app:civ_border_color="#23000000"
         android:layout_height="40dp"
         android:layout_marginEnd="16dp" />
 
@@ -39,6 +43,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:textSize="14sp"
+            android:textColor="@color/gray"
             tools:text="utku@valensas.com" />
 
     </LinearLayout>

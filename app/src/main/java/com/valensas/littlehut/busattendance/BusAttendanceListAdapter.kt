@@ -1,13 +1,7 @@
 package com.valensas.littlehut.busattendance
 
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
-import android.support.annotation.LayoutRes
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.valensas.littlehut.BR
-import com.valensas.littlehut.R
 import com.valensas.littlehut.busattendance.item.BusAttendanceContentViewModel
 import com.valensas.littlehut.busattendance.item.BusAttendanceHeaderViewModel
 import com.valensas.littlehut.busattendance.viewholder.BusAttendanceContentViewHolder

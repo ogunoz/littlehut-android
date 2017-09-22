@@ -9,4 +9,6 @@ import com.google.gson.annotations.SerializedName
 data class AttendeeModel(@SerializedName("name")
                          val name: String,
                          @SerializedName("email")
-                         val email: String)
+                         val email: String,
+                         @SerializedName("avatar")
+                         val pictureUrl: String)

@@ -11,4 +11,4 @@ data class BusAttendanceModel(@SerializedName("attending")
                               @SerializedName("notAttending")
                               val notAttendingList: ArrayList<AttendeeModel>,
                               @SerializedName("pending")
-                              val pendingList: ArrayList<AttendeeModel>)
+                              val pendingList: ArrayList<AttendeeModel>) : BaseResponse()

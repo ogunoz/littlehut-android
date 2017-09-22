@@ -1,8 +1,6 @@
 package com.valensas.littlehut.busattendance.viewholder
 
-import android.databinding.ViewDataBinding
 import android.support.annotation.LayoutRes
-import android.view.View
 import android.view.ViewGroup
 import com.valensas.littlehut.BaseViewHolder
 
