@@ -10,22 +10,33 @@ import com.valensas.littlehut.network.BaseResponse
  */
 class BusAttendancePresenter(private val view: BusAttendanceContract.View) : BusAttendanceContract.Presenter() {
 
+    private var isFabOpen = false
+
     init {
         view.presenter = this
     }
-
 
     override fun onViewAttached() {
         fetchBusAttendanceList()
     }
 
-    override fun onAttendanceStatusChangeClicked(status: Boolean) {
+    override fun onAttendanceStatusButtonClicked() {
+        if (isFabOpen) {
+            view.closeFABMenu()
+        } else {
+            view.showFABMenu()
+        }
+        isFabOpen = !isFabOpen
+    }
+
+    override fun onAttendanceStatusActionClicked(status: Boolean) {
         sendMyAttendance(status)
+        view.closeFABMenu()
     }
 
     private fun fetchBusAttendanceList() {
         sendRequest(apiService.getBusAttendance()) { response ->
-            view.initAttendanceList(response)
+            view.initAttendanceList(BusAttendanceListViewModel(response))
         }
     }
 
@@ -37,6 +48,12 @@ class BusAttendancePresenter(private val view: BusAttendanceContract.View) : Bus
             } else {
                 view.changeFABIcon(R.drawable.not_come_24_dp)
             }
+        }
+    }
+
+    override fun onContainerClicked() {
+        if (isFabOpen) {
+            view.closeFABMenu()
         }
     }
 }

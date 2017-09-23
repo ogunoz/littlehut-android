@@ -13,10 +13,14 @@ interface BusAttendanceContract {
 
     interface View : BaseView<Presenter> {
         fun changeFABIcon(@DrawableRes iconResource: Int)
-        fun initAttendanceList(list: BusAttendanceModel)
+        fun initAttendanceList(listViewModel: BusAttendanceListViewModel)
+        fun showFABMenu()
+        fun closeFABMenu()
     }
 
     abstract class Presenter : BasePresenter() {
-        abstract fun onAttendanceStatusChangeClicked(status: Boolean)
+        abstract fun onAttendanceStatusActionClicked(status: Boolean)
+        abstract fun onAttendanceStatusButtonClicked()
+        abstract fun onContainerClicked()
     }
 }

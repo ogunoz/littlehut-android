@@ -5,7 +5,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.valensas.littlehut.R
 import com.valensas.littlehut.core.BaseFragment
-import com.valensas.littlehut.network.BusAttendanceModel
 import kotlinx.android.synthetic.main.fragment_bus_attendance.*
 
 
@@ -15,8 +14,7 @@ import kotlinx.android.synthetic.main.fragment_bus_attendance.*
  */
 class BusAttendanceFragment : BaseFragment<BusAttendanceContract.Presenter>(), BusAttendanceContract.View {
 
-    var listAdapter: BusAttendanceListAdapter? = null
-    var isFabOpen = false
+    private var listAdapter: BusAttendanceListAdapter? = null
     override lateinit var presenter: BusAttendanceContract.Presenter
 
     override fun getLayoutResource(): Int {
@@ -25,48 +23,41 @@ class BusAttendanceFragment : BaseFragment<BusAttendanceContract.Presenter>(), B
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        busAttendanceContainerLayout.setOnClickListener { if (isFabOpen) closeFABMenu() }
-        busAttendanceStatusChangeButton.setOnClickListener({
-            if (isFabOpen) {
-                closeFABMenu()
-            } else {
-                showFABMenu()
-            }
-        })
-        busAttendanceAttendButton.setOnClickListener({
-            presenter.onAttendanceStatusChangeClicked(true)
-            closeFABMenu()
-        })
-        busAttendanceNotAttendButton.setOnClickListener({
-            presenter.onAttendanceStatusChangeClicked(false)
-            closeFABMenu()
-        })
+        busAttendanceContainerLayout.setOnClickListener {
+            presenter.onContainerClicked()
+        }
+        busAttendanceStatusChangeButton.setOnClickListener {
+            presenter.onAttendanceStatusButtonClicked()
+        }
+        busAttendanceAttendButton.setOnClickListener {
+            presenter.onAttendanceStatusActionClicked(true)
+        }
+        busAttendanceNotAttendButton.setOnClickListener {
+            presenter.onAttendanceStatusActionClicked(false)
+        }
     }
 
-    override fun initAttendanceList(list: BusAttendanceModel) {
-        val viewModel = BusAttendanceListViewModel(list)
+    override fun initAttendanceList(listViewModel: BusAttendanceListViewModel) {
         if (listAdapter == null) {
             val layoutManager = LinearLayoutManager(context)
             layoutManager.orientation = LinearLayoutManager.VERTICAL
             busAttendanceRecyclerView.layoutManager = layoutManager
-            listAdapter = BusAttendanceListAdapter(viewModel)
+            listAdapter = BusAttendanceListAdapter(listViewModel)
             busAttendanceRecyclerView.adapter = listAdapter
             busAttendanceStatusChangeButton.visibility = View.VISIBLE
         } else {
-            listAdapter?.updateList(viewModel)
+            listAdapter?.updateList(listViewModel)
         }
     }
 
-    fun showFABMenu() {
-        isFabOpen = true;
-        busAttendanceAttendButton.animate().translationY(-getResources().getDimension(R.dimen.standard_105));
-        busAttendanceNotAttendButton.animate().translationY(-getResources().getDimension(R.dimen.standard_55));
+    override fun showFABMenu() {
+        busAttendanceAttendButton.animate().translationY(-resources.getDimension(R.dimen.standard_105))
+        busAttendanceNotAttendButton.animate().translationY(-resources.getDimension(R.dimen.standard_55))
     }
 
-    fun closeFABMenu() {
-        isFabOpen = false;
-        busAttendanceAttendButton.animate().translationY(0.0f);
-        busAttendanceNotAttendButton.animate().translationY(0.0f);
+    override fun closeFABMenu() {
+        busAttendanceAttendButton.animate().translationY(0.0f)
+        busAttendanceNotAttendButton.animate().translationY(0.0f)
     }
 
     override fun changeFABIcon(iconResource: Int) {
