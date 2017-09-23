@@ -1,10 +1,8 @@
 package com.valensas.littlehut.core
 
-import android.content.Context
-import android.support.annotation.StringRes
-
 /**
- * Created by andrewkhristyan on 10/2/16.
+ * Created by ogun on 23/09/2017.
+ * Valensas 2017
  */
 interface BaseView {
 
