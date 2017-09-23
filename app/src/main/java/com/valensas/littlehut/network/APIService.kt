@@ -24,26 +24,26 @@ interface APIService {
 
     companion object {
 
+        private var service: APIService? = null
+        private var headers = HashMap<String, String>()
         val BASE_URL = "https://littlehut.herokuapp.com/api/"
         val SLACK_REDIRECTION_URL = "com.valensas.littlehut:/home"
         val SLACK_AUTH = "auth/slack?url=" + SLACK_REDIRECTION_URL
-        var TOKEN = ""
-        // var service: APIService = null
-        // val BASE_URL = "https://www.ntv.com.tr"
-        //  val SLACK_AUTH = ""
-        // ogun: {
-        // id: 123
-        //}
 
+        fun get(): APIService {
+            return service ?: create()
+        }
 
-        fun create(): APIService {
-
-            // if(service == null) {
+        private fun create(): APIService {
 
             val httpClient = OkHttpClient().newBuilder()
             val interceptor = Interceptor { chain ->
-                val request = chain?.request()?.newBuilder()?.addHeader("Authorization", "Bearer " + TOKEN)?.build();
-                chain?.proceed(request)
+                val builder = chain.request()?.newBuilder()
+                for (key in headers.keys) {
+                    builder?.addHeader(key, headers[key]!!)
+                }
+                val request = builder?.build()
+                chain.proceed(request!!)
             }
             httpClient.networkInterceptors().add(interceptor)
 
@@ -53,10 +53,19 @@ interface APIService {
                     .baseUrl(BASE_URL)
                     .client(httpClient.build())
                     .build()
+            val service = retrofit.create(APIService::class.java)
+            this.service = service
+            return service
+        }
 
-            //      service =
-            //   // }
-            return retrofit.create(APIService::class.java)
+        fun putHeader(key: String, value: String) {
+            headers.put(key, value)
+            service = null
+        }
+
+        fun clearHeaders() {
+            headers.clear()
+            service = null
         }
     }
 }

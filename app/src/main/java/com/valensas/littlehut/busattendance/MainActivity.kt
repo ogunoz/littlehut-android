@@ -16,13 +16,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val fragment = supportFragmentManager
+        supportFragmentManager
                 .findFragmentById(R.id.contentFrame) as BusAttendanceFragment? ?:
                 BusAttendanceFragment.newInstance().also {
                     replaceFragmentInActivity(it, R.id.contentFrame)
                 }
-        BusAttendancePresenter(fragment)
     }
 
 

@@ -12,10 +12,12 @@ import kotlinx.android.synthetic.main.fragment_bus_attendance.*
  * Created by ogun on 20/09/2017.
  * Valensas 2017
  */
-class BusAttendanceFragment : BaseFragment<BusAttendanceContract.Presenter>(), BusAttendanceContract.View {
+class BusAttendanceFragment : BaseFragment<BusAttendanceContract.View,
+        BusAttendanceContract.Presenter>(), BusAttendanceContract.View {
+
+    override var presenter: BusAttendanceContract.Presenter = BusAttendancePresenter()
 
     private var listAdapter: BusAttendanceListAdapter? = null
-    override lateinit var presenter: BusAttendanceContract.Presenter
 
     override fun getLayoutResource(): Int {
         return R.layout.fragment_bus_attendance

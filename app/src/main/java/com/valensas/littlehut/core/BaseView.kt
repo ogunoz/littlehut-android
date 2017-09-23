@@ -1,9 +1,13 @@
 package com.valensas.littlehut.core
 
+import android.content.Context
+import android.support.annotation.StringRes
+
 /**
- * Created by ogun on 23/09/2017.
- * Valensas 2017
+ * Created by andrewkhristyan on 10/2/16.
  */
-interface BaseView<T> {
-    var presenter: T
+interface BaseView {
+
+    fun turnToLogin()
+
 }

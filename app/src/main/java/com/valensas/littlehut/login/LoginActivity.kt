@@ -38,7 +38,7 @@ class LoginActivity : AppCompatActivity(), WebViewOnFinishListener {
             authWebView.webViewClient = controller
             authWebView.loadUrl(APIService.BASE_URL + APIService.SLACK_AUTH)
         } else {
-            APIService.TOKEN = currentToken
+            APIService.putHeader("Authorization", "Bearer " + currentToken)
             startActivity(MainActivity.newIntent(this))
             overridePendingTransition(0, 0)
             finish()
@@ -46,7 +46,8 @@ class LoginActivity : AppCompatActivity(), WebViewOnFinishListener {
     }
 
     override fun onLoginCompleted(token: String) {
-        APIService.TOKEN = token
+
+        APIService.putHeader("Authorization", "Bearer " + token)
         preferences.edit().putString(KEY_TOKEN, token).apply()
         startActivity(MainActivity.newIntent(this))
         finish()
