@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Little Hut</string>
+
+    <string name="waiting_for_bus_title">Servisin gelmesine</string>
+    <string name="waiting_for_bus_value">%1$d saat %2$d dakika</string>
+    <string name="bus_has_arrived">Servis Geldi</string>
+    <string name="bus_has_departed_title">Servis Kalktı</string>
+    <string name="bus_has_departed_value">İyi Yolculuklar</string>
+    <string name="bon_appetit">Afiyet Olsun</string>
+    <string name="bus_is_waiting_title">Servisin kalkmasına</string>
+    <string name="bus_is_waiting_value">%1$d saat %2$d dakika</string>
+    <string name="check_tomorrow">Yarın Tekrar Deneyin</string>
+    <string name="bus_is_returning_title">Servis Kalktı</string>
+    <string name="bus_has_returning_value">İyi Yolculuklar</string>
+    <string name="not_working_dat">İyi Tatiller</string>
+    <string name="check_later">Sonra Tekrar Deneyin</string>
+
 </resources>

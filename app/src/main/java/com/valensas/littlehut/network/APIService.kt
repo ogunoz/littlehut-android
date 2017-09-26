@@ -22,10 +22,16 @@ interface APIService {
     @POST("bus/attendance")
     fun postMyAttendance(@Body body: AttendModel): Observable<BaseResponse>
 
+    @GET("bus/status")
+    fun getBusStatus(): Observable<BusStatusModel>
+
+    @GET("bus/attendance/me/status")
+    fun getMyAttendance(): Observable<MyAttendanceModel>
+
     companion object {
 
         private var service: APIService? = null
-        private var headers = HashMap<String, String>()
+        var headers = HashMap<String, String>()
         val BASE_URL = "https://littlehut.herokuapp.com/api/"
         val SLACK_REDIRECTION_URL = "com.valensas.littlehut:/home"
         val SLACK_AUTH = "auth/slack?url=" + SLACK_REDIRECTION_URL
